@@ -65,10 +65,12 @@ public class FibonacciAdapter extends BaseAdapter {
             holder = ( ViewHolder ) convertView.getTag();
         }
         Integer bean = mList.get( position );
-        holder.mTextView.setText( bean + "FibonacciCalculator Number calculating..." );
+        holder.mTextView.setText( bean + "^2 FibonacciCalculator Number calculating..." );
+        holder.mTextView.setTag( Integer.valueOf( ( ( int ) ( Math.pow( bean, 2 ) ) ) ) );
         UniversalFibonacciLoader.getInstance()
-                                .displayFibonacciNumber( ( int ) Math.pow( bean, 2 ),
-                                                         holder.mTextView
+                                .displayFibonacciNumber(
+                                        Integer.valueOf( ( ( int ) ( Math.pow( bean, 2 ) ) ) ),
+                                        holder.mTextView
                                 );
         return convertView;
     }

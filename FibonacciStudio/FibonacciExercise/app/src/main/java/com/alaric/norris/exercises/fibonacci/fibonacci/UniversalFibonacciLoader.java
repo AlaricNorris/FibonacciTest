@@ -26,7 +26,8 @@ import java.math.BigInteger;
  @formatter:off ***************************************************************************************************
  */
 public class UniversalFibonacciLoader {
-    public static LruCache< Integer, BigInteger > CachedFibonacciResults = new LruCache<>( 60 * 1024 );
+    public static LruCache< Integer, BigInteger > CachedFibonacciResults =
+            new LruCache<>( 60 * 1024 );
     private static volatile UniversalFibonacciLoader mInstance;
     protected UniversalFibonacciLoader () {
     }
@@ -51,7 +52,7 @@ public class UniversalFibonacciLoader {
         if ( CachedFibonacciResults != null ) {
             if ( CachedFibonacciResults.get( tag ) != null ) {
                 if ( inTextView.getTag() != null && inTextView.getTag().equals( tag ) ) {
-                    inTextView.setText( "" + CachedFibonacciResults.get( tag ) );
+                    inTextView.setText( tag + ":\t" + CachedFibonacciResults.get( tag ) );
                     return;
                 }
             }

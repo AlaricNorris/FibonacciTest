@@ -37,17 +37,19 @@ public final class FibonacciCalculateThread extends Thread {
     @Override
     public void run () {
         final BigInteger result = calculateFibonacci( seed );
-        if ( result == null )
+        if ( result == null ) {
             return;
-
+        }
         if ( UniversalFibonacciLoader.CachedFibonacciResults != null ) {
             UniversalFibonacciLoader.CachedFibonacciResults.put( seed, result );
         }
+        if ( isNeedAbandon() )
+            return;
         mTextView.post( new Runnable() {
 
             @Override
             public void run () {
-                mTextView.setText( "" + result );
+                mTextView.setText( seed + ":\t" + result );
             }
         } );
     }
@@ -71,17 +73,19 @@ public final class FibonacciCalculateThread extends Thread {
             return new BigInteger( String.valueOf( 1 ) );
         BigInteger _1 = null;
         BigInteger _2 = null;
+        Integer key_1 = inSeed - 1;
+        Integer key_2 = inSeed - 2;
         if ( UniversalFibonacciLoader.CachedFibonacciResults != null ) {
-            _1 = UniversalFibonacciLoader.CachedFibonacciResults.get( inSeed - 1 );
-            _2 = UniversalFibonacciLoader.CachedFibonacciResults.get( inSeed - 2 );
+            _1 = UniversalFibonacciLoader.CachedFibonacciResults.get( key_1 );
+            _2 = UniversalFibonacciLoader.CachedFibonacciResults.get( key_2 );
         }
-        _1 = _1 == null ? calculateFibonacci( inSeed - 1 ) : _1;
-        _2 = _2 == null ? calculateFibonacci( inSeed - 2 ) : _2;
+        _1 = _1 == null ? calculateFibonacci( key_1 ) : _1;
+        _2 = _2 == null ? calculateFibonacci( key_2 ) : _2;
         if ( _1 == null || _2 == null )
             return null;
         if ( UniversalFibonacciLoader.CachedFibonacciResults != null ) {
-            UniversalFibonacciLoader.CachedFibonacciResults.put( inSeed - 1, _1 );
-            UniversalFibonacciLoader.CachedFibonacciResults.put( inSeed - 2, _2 );
+            UniversalFibonacciLoader.CachedFibonacciResults.put( key_1, _1 );
+            UniversalFibonacciLoader.CachedFibonacciResults.put( key_2, _2 );
         }
         return _1.add( _2 );
     }

@@ -10,7 +10,7 @@ public class FibonacciActivity extends AppCompatActivity {
     public static final ArrayList< Integer > mList = new ArrayList< Integer >();
 
     static {
-        for ( int i = 1 ; i < 450 ; i++ ) {
+        for ( int i = 1 ; i <= 450 ; i++ ) {
             mList.add( i );
         }
     }
@@ -24,5 +24,12 @@ public class FibonacciActivity extends AppCompatActivity {
         mListView = ( ListView ) findViewById( R.id.list );
         mAdapter = new FibonacciAdapter( this, mList );
         mListView.setAdapter( mAdapter );
+        mListView.postDelayed( new Runnable() {
+
+            @Override
+            public void run () {
+                mAdapter.notifyDataSetChanged();
+            }
+        }, 1000 );
     }
 }
