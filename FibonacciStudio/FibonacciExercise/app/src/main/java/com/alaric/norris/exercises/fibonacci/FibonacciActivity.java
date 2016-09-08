@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
+import com.alaric.norris.exercises.fibonacci.fibonacci.FibonacciBackgroundCalculatorThread;
+
 import java.util.ArrayList;
 
 public class FibonacciActivity extends AppCompatActivity {
@@ -31,5 +33,8 @@ public class FibonacciActivity extends AppCompatActivity {
                 mAdapter.notifyDataSetChanged();
             }
         }, 1000 );
+
+
+        new FibonacciBackgroundCalculatorThread( 450 ).start();
     }
 }

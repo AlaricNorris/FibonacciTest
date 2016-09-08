@@ -9,10 +9,10 @@
  */
 package com.alaric.norris.exercises.fibonacci.fibonacci;
 
-import android.support.v4.util.LruCache;
 import android.widget.TextView;
 
 import java.math.BigInteger;
+import java.util.LinkedHashMap;
 /**
  @formatter:off ClassName:      UniversalFibonacciLoader
  @formatter:off Function:       ${TODO}  ADD FUNCTION
@@ -26,8 +26,8 @@ import java.math.BigInteger;
  @formatter:off ***************************************************************************************************
  */
 public class UniversalFibonacciLoader {
-    public static LruCache< Integer, BigInteger > CachedFibonacciResults =
-            new LruCache<>( 60 * 1024 );
+    public static LinkedHashMap< Integer, BigInteger > CachedFibonacciResults =
+            new LinkedHashMap<>( 100 * 1024 );
     private static volatile UniversalFibonacciLoader mInstance;
     protected UniversalFibonacciLoader () {
     }
