@@ -9,6 +9,7 @@
  */
 package com.alaric.norris.exercises.fibonacci.fibonacci;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -29,8 +30,11 @@ public class FibonacciBackgroundCalculatorThread extends Thread {
 
     @NonNull
     private Integer seed;
-    public FibonacciBackgroundCalculatorThread ( Integer inSeed ) {
+    @NonNull
+    private Context mContext;
+    public FibonacciBackgroundCalculatorThread ( Integer inSeed, Context inContext ) {
         this.seed = inSeed;
+        this.mContext = inContext;
     }
     @Override
     public void run () {
@@ -45,7 +49,16 @@ public class FibonacciBackgroundCalculatorThread extends Thread {
                         "FibonacciBackgroundCalculatorThread\n Cached:" + currentSeed + "result"
                 );
             }
-
+//            Fibonacci u1 = new Fibonacci( currentSeed, result );
+//            DatabaseHelper helper = DatabaseHelper.getHelper( mContext );
+//            try {
+//                if ( helper.getFibonacciDao().idExists( currentSeed ) )
+//                    return;
+//                helper.getFibonacciDao().createOrUpdate( u1 );
+//            }
+//            catch ( Exception e ) {
+//                e.printStackTrace();
+//            }
         }
         while ( currentSeed <= seed * seed );
     }

@@ -9,10 +9,12 @@
  */
 package com.alaric.norris.exercises.fibonacci.fibonacci;
 
+import android.support.v4.util.LruCache;
 import android.widget.TextView;
 
+import com.jakewharton.disklrucache.DiskLruCache;
+
 import java.math.BigInteger;
-import java.util.LinkedHashMap;
 /**
  @formatter:off ClassName:      UniversalFibonacciLoader
  @formatter:off Function:       ${TODO}  ADD FUNCTION
@@ -26,8 +28,10 @@ import java.util.LinkedHashMap;
  @formatter:off ***************************************************************************************************
  */
 public class UniversalFibonacciLoader {
-    public static LinkedHashMap< Integer, BigInteger > CachedFibonacciResults =
-            new LinkedHashMap<>( 100 * 1024 );
+    public static LruCache< Integer, BigInteger > CachedFibonacciResults =
+            new LruCache<>( 100 * 1024 );
+
+    public static DiskLruCache mDiskLruCache = null;
     private static volatile UniversalFibonacciLoader mInstance;
     protected UniversalFibonacciLoader () {
     }
